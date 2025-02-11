@@ -1,19 +1,44 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id("io.qameta.allure") version "2.12.0"
 }
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
 
+
+
+allure {
+    version.set("2.23.0") // Совместимая версия Allure
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.23.0") // Версия адаптера для JUnit5
+            }
+        }
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation(
+            'com.codeborne:selenide:7.6.1',
+            'org.junit.jupiter:junit-jupiter:5.11.4',
+            'com.github.javafaker:javafaker:1.0.2',
+            'io.qameta.allure:allure-selenide:2.29.1'
+    )
 }
 
 test {
     useJUnitPlatform()
 }
+
