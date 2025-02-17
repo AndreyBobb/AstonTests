@@ -1,12 +1,17 @@
 package dataprovider;
 
+import com.codeborne.selenide.Condition;
 import com.github.javafaker.Faker;
 
+import java.time.Duration;
 import java.util.Locale;
 
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class DataForTests {
 
@@ -25,20 +30,26 @@ public class DataForTests {
     }
 
     public DataForTests setCompanyName() {
-        $("#contact-form div.chakra-input__group input[wfd-id='id1']").
-                setValue(companyName);
+        $("#contact-form div.chakra-input__group input[type='input']").
+                parent().parent().sibling(0).$("input[type='input']")
+                .should(appear, Duration.ofSeconds(10))
+                .setValue(companyName);
         return this;
     }
 
     public DataForTests setPhoneNumber() {
-        $("#contact-form div.chakra-input__group input[wfd-id='id2']").
+        $("#contact-form div.chakra-input__group input[type='input']").
+                parent().parent().sibling(1).$(".chakra-input")
+                 .should(appear, Duration.ofSeconds(10)).
                 setValue(phoneNumber);
         return this;
 
     }
 
     public DataForTests setEmail() {
-        $("#contact-form div.chakra-input__group input[wfd-id='id3']").
+        $("#contact-form div.chakra-input__group input[type='input']").
+                parent().parent().sibling(2).$(".chakra-input")
+                 .should(appear, Duration.ofSeconds(10)).
                 setValue(email);
         return this;
     }
