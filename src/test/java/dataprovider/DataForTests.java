@@ -1,17 +1,14 @@
 package dataprovider;
 
-import com.codeborne.selenide.Condition;
 import com.github.javafaker.Faker;
 
 import java.time.Duration;
 import java.util.Locale;
 
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 public class DataForTests {
 
@@ -40,7 +37,7 @@ public class DataForTests {
     public DataForTests setPhoneNumber() {
         $("#contact-form div.chakra-input__group input[type='input']").
                 parent().parent().sibling(1).$(".chakra-input")
-                 .should(appear, Duration.ofSeconds(10)).
+                .should(appear, Duration.ofSeconds(10)).
                 setValue(phoneNumber);
         return this;
 
@@ -49,7 +46,7 @@ public class DataForTests {
     public DataForTests setEmail() {
         $("#contact-form div.chakra-input__group input[type='input']").
                 parent().parent().sibling(2).$(".chakra-input")
-                 .should(appear, Duration.ofSeconds(10)).
+                .should(appear, Duration.ofSeconds(10)).
                 setValue(email);
         return this;
     }

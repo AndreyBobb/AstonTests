@@ -13,7 +13,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -26,7 +25,7 @@ public class TestBase {
         Configuration.baseUrl = "https://astondevs.ru/";
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("version", "latest");
-        Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
+        Configuration.browserSize = "1920x1080";
         Configuration.remote = System.getProperty("Url_Of_Selenoid");
 
         ChromeOptions options = new ChromeOptions();
